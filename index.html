@@ -125,11 +125,27 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
 .footer-links a:hover { color: var(--gold); }
 .footer-copy { font-size: 11px; color: rgba(247,242,232,0.2); letter-spacing: 0.08em; }
 
-.float-cta { position: fixed; bottom: 28px; right: 28px; background: var(--gold); color: var(--dark); font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 22px; text-decoration: none; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; transition: all 0.3s; }
-.float-cta:hover { background: var(--gold-light); transform: translateY(-3px); }
+.float-wa { position: fixed; bottom: 28px; right: 28px; background: #1A3A2A; color: #A8D5B5; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 14px 22px; text-decoration: none; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 200; transition: all 0.3s; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(168,213,181,0.25); }
+.float-wa:hover { background: #224a36; transform: translateY(-3px); }
+.float-wa svg { width: 15px; height: 15px; fill: #A8D5B5; flex-shrink: 0; }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+
+#joinus { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.1); }
+.joinus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1100px; margin: 0 auto; }
+.joinus-card { background: var(--dark-3); border: 1px solid rgba(184,150,62,0.1); padding: 48px 40px; position: relative; overflow: hidden; transition: all 0.4s; }
+.joinus-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.joinus-card:hover { border-color: rgba(184,150,62,0.25); transform: translateY(-4px); }
+.joinus-card:hover::after { transform: scaleX(1); }
+.joinus-card-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+.joinus-card-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; color: var(--cream); margin-bottom: 12px; letter-spacing: 0.05em; }
+.joinus-card-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: var(--gold); margin-bottom: 20px; }
+.joinus-card-desc { font-size: 15px; line-height: 1.9; color: rgba(247,242,232,0.55); margin-bottom: 28px; }
+.joinus-perks { list-style: none; margin-bottom: 32px; }
+.joinus-perks li { font-size: 13px; color: rgba(247,242,232,0.45); padding: 6px 0; border-bottom: 1px solid rgba(184,150,62,0.06); display: flex; align-items: center; gap: 10px; }
+.joinus-perks li::before { content: '✦'; color: var(--gold); font-size: 8px; opacity: 0.7; flex-shrink: 0; }
+.joinus-form { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.joinus-success { display: none; color: var(--gold); font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.1em; margin-top: 8px; }.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 960px) {
@@ -161,9 +177,10 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="tel:+919431638611" class="nav-cta">Consult Now</a>
+  <a href="tel:+919431638611" class="nav-cta">Call Now</a>
 </nav>
 
 <section class="hero" id="home">
@@ -322,6 +339,119 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
   </div>
 </section>
 
+<section id="joinus">
+  <div class="section-label reveal">Careers</div>
+  <h2 class="section-title reveal">Join Our Chamber</h2>
+  <p class="section-intro reveal">We are always looking for passionate, driven individuals to grow with us. Whether you are a law student or a practising advocate, there is a place for you here.</p>
+  <div class="joinus-grid">
+
+    <div class="joinus-card reveal">
+      <span class="joinus-card-icon">&#127979;</span>
+      <h3 class="joinus-card-title">Internship Programme</h3>
+      <div class="joinus-card-subtitle">For Law Students &amp; Graduates</div>
+      <p class="joinus-card-desc">Gain real courtroom exposure alongside experienced advocates. Our internship programme places you at the heart of live cases across criminal, family, and civil matters at the East Champaran District Court and beyond.</p>
+      <ul class="joinus-perks">
+        <li>Hands-on experience in live court proceedings</li>
+        <li>Mentorship from Adv. Rajeev Kumar Dwivedi</li>
+        <li>Drafting, research &amp; client interaction skills</li>
+        <li>Certificate of completion issued</li>
+        <li>Duration: 1 to 3 months</li>
+      </ul>
+      <form class="joinus-form" action="https://formspree.io/f/mpqyprdz" method="POST" onsubmit="handleJoinSubmit(event, 'intern-success')">
+        <input type="hidden" name="application_type" value="Internship Application"/>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" class="form-input" placeholder="Your full name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">College / University</label>
+          <input type="text" name="college" class="form-input" placeholder="Name of your law college" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Year of Study</label>
+          <select name="year" class="form-select" required>
+            <option value="">Select year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>5th Year</option>
+            <option>Graduate / LLB Completed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Duration</label>
+          <select name="duration" class="form-select" required>
+            <option value="">Select duration</option>
+            <option>1 Month</option>
+            <option>2 Months</option>
+            <option>3 Months</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Apply for Internship</button>
+        <div class="joinus-success" id="intern-success">&#10003; APPLICATION RECEIVED &mdash; WE WILL CONTACT YOU SHORTLY</div>
+      </form>
+    </div>
+
+    <div class="joinus-card reveal">
+      <span class="joinus-card-icon">&#9878;</span>
+      <h3 class="joinus-card-title">Junior Associate</h3>
+      <div class="joinus-card-subtitle">For Enrolled Advocates</div>
+      <p class="joinus-card-desc">Join our growing team as a Junior Associate and build your practice under the guidance of one of Bihar's most respected advocates. We offer a collaborative, high-exposure environment across multiple practice areas.</p>
+      <ul class="joinus-perks">
+        <li>Active involvement in criminal, family &amp; civil cases</li>
+        <li>Direct mentorship from senior advocates</li>
+        <li>Court appearances from day one</li>
+        <li>Competitive remuneration</li>
+        <li>Clear path to senior association</li>
+      </ul>
+      <form class="joinus-form" action="https://formspree.io/f/mpqyprdz" method="POST" onsubmit="handleJoinSubmit(event, 'associate-success')">
+        <input type="hidden" name="application_type" value="Junior Associate Application"/>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" class="form-input" placeholder="Your full name" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bar Enrolment Number</label>
+          <input type="text" name="enrolment" class="form-input" placeholder="Your Bar Council enrolment number" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Years of Practice</label>
+          <select name="experience" class="form-select" required>
+            <option value="">Select experience</option>
+            <option>Fresher (0–1 year)</option>
+            <option>1–2 Years</option>
+            <option>2–5 Years</option>
+            <option>5+ Years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Area of Interest</label>
+          <select name="area" class="form-select" required>
+            <option value="">Select area</option>
+            <option>Criminal Law</option>
+            <option>Family Law</option>
+            <option>Personal Injury / MACT</option>
+            <option>Civil / Miscellaneous</option>
+            <option>All Areas</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Apply as Junior Associate</button>
+        <div class="joinus-success" id="associate-success">&#10003; APPLICATION RECEIVED &mdash; WE WILL CONTACT YOU SHORTLY</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
 <section id="contact">
   <div class="section-label reveal">Reach Us</div>
   <h2 class="section-title reveal">Get in Touch</h2>
@@ -348,23 +478,23 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
         <div class="contact-icon">&#128205;</div>
         <div>
           <div class="contact-detail-label">Office Address</div>
-          <div class="contact-detail-val">Rajeev Kumar Dwivedi @ Pappu Dubey<br>New Gopalpur West, Rajabazaar<br>Motihari &ndash; 845401, Bihar</div>
+          <div class="contact-detail-val">Rajeev Kumar Dwivedi @ Pappu Dubey<br>New Gopalpur West, Rajabazaar<br>Motihari &ndash; 845401, Bihar<br><a href="https://maps.app.goo.gl/QGzZUHmLzs9zL8KH8" target="_blank" style="color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;display:inline-block;margin-top:8px;border-bottom:1px solid rgba(184,150,62,0.4);">&#128205; View on Google Maps</a></div>
         </div>
       </div>
     </div>
-    <div class="reveal">
-      <div class="contact-form" id="contactForm">
+      <div class="reveal">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mpqyprdz" method="POST">
         <div class="form-group">
           <label class="form-label">Your Full Name</label>
-          <input type="text" class="form-input" placeholder="e.g. Amit Kumar Sharma"/>
+          <input type="text" name="name" class="form-input" placeholder="e.g. Amit Kumar Sharma" required/>
         </div>
         <div class="form-group">
           <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX"/>
+          <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required/>
         </div>
         <div class="form-group">
           <label class="form-label">Matter Type</label>
-          <select class="form-select">
+          <select name="matter" class="form-select" required>
             <option value="">Select Practice Area</option>
             <option>Criminal Law</option>
             <option>Family Law</option>
@@ -375,12 +505,12 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
         </div>
         <div class="form-group">
           <label class="form-label">Brief Description of Your Matter</label>
-          <textarea class="form-textarea" placeholder="Please describe your matter briefly..."></textarea>
+          <textarea name="message" class="form-textarea" placeholder="Please describe your matter briefly..." required></textarea>
         </div>
-        <button class="form-submit" onclick="handleSubmit()">Send Enquiry</button>
+        <button type="submit" class="form-submit">Send Enquiry</button>
         <div class="form-success" id="form-success">&#10003; ENQUIRY SENT &mdash; WE WILL BE IN TOUCH SHORTLY</div>
+        </form>
       </div>
-    </div>
   </div>
 </section>
 
@@ -393,14 +523,46 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="footer-copy">&copy; 2026 Chamber of Adv. Rajeev Kumar Dwivedi &middot; Motihari, Bihar &middot; All Rights Reserved</div>
 </footer>
 
-<a href="tel:+919431638611" class="float-cta">&#128222; Call Now</a>
+<a href="https://wa.me/919431638611" target="_blank" class="float-wa">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  WhatsApp
+</a>
 
 <script>
+
+function handleJoinSubmit(e, successId) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.7';
+  fetch('https://formspree.io/f/mpqyprdz', {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(res) {
+    btn.textContent = form.querySelector('button').getAttribute('data-label') || 'Apply';
+    btn.style.opacity = '1';
+    if (res.ok) {
+      form.reset();
+      var s = document.getElementById(successId);
+      s.style.display = 'block';
+      setTimeout(function() { s.style.display = 'none'; }, 6000);
+    } else {
+      alert('Something went wrong. Please call us on +91 94316 38611.');
+    }
+  }).catch(function() {
+    btn.textContent = 'Apply';
+    btn.style.opacity = '1';
+    alert('Something went wrong. Please call us on +91 94316 38611.');
+  });
+}
 
 var reveals = document.querySelectorAll('.reveal');
 var observer = new IntersectionObserver(function(entries) {
@@ -413,15 +575,36 @@ var observer = new IntersectionObserver(function(entries) {
 }, { threshold: 0.08 });
 reveals.forEach(function(el) { observer.observe(el); });
 
-function handleSubmit() {
-  var inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
-  var valid = true;
-  inputs.forEach(function(inp) { if (!inp.value.trim()) valid = false; });
-  if (!valid) { alert('Please fill in all fields before submitting.'); return; }
-  inputs.forEach(function(inp) { inp.value = ''; });
-  var s = document.getElementById('form-success');
-  s.style.display = 'block';
-  setTimeout(function() { s.style.display = 'none'; }, 5000);
+var form = document.getElementById('contactForm');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('.form-submit');
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+    fetch('https://formspree.io/f/mpqyprdz', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        form.reset();
+        btn.textContent = 'Send Enquiry';
+        btn.style.opacity = '1';
+        var s = document.getElementById('form-success');
+        s.style.display = 'block';
+        setTimeout(function() { s.style.display = 'none'; }, 6000);
+      } else {
+        btn.textContent = 'Send Enquiry';
+        btn.style.opacity = '1';
+        alert('Something went wrong. Please call us directly on +91 94316 38611.');
+      }
+    }).catch(function() {
+      btn.textContent = 'Send Enquiry';
+      btn.style.opacity = '1';
+      alert('Something went wrong. Please call us directly on +91 94316 38611.');
+    });
+  });
 }
 
 var allSections = document.querySelectorAll('section[id]');
