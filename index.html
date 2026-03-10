@@ -32,6 +32,13 @@ nav {
 .nav-links a:hover { color: var(--gold); }
 .nav-cta { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 8px 20px; text-decoration: none; transition: all 0.3s; }
 .nav-cta:hover { background: var(--gold); color: var(--dark); }
+.more-btn { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em; color: rgba(247,242,232,0.6); text-transform: uppercase; background: none; border: none; cursor: pointer; padding: 0; transition: color 0.3s; }
+.more-btn:hover { color: var(--gold); }
+.more-menu { display: none; position: absolute; top: 36px; right: 0; background: rgba(13,11,8,0.98); border: 1px solid rgba(184,150,62,0.2); min-width: 180px; z-index: 300; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+.more-menu.open { display: block; }
+.more-menu a { display: block; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,232,0.6); text-decoration: none; padding: 14px 20px; border-bottom: 1px solid rgba(184,150,62,0.08); transition: all 0.2s; }
+.more-menu a:last-child { border-bottom: none; }
+.more-menu a:hover { color: var(--gold); background: rgba(184,150,62,0.05); padding-left: 26px; }
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; background: var(--dark); }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,150,62,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,62,0.04) 0%, transparent 60%); }
@@ -206,9 +213,15 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#articles">Articles</a></li>
     <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li style="position:relative;">
+      <button class="more-btn" onclick="toggleMoreMenu()" id="moreBtn">More &#9662;</button>
+      <div class="more-menu" id="moreMenu">
+        <a href="#articles" onclick="toggleMoreMenu()">&#128196; Academic Work</a>
+        <a href="#gallery" onclick="toggleMoreMenu()">&#128247; Gallery</a>
+      </div>
+    </li>
   </ul>
   <a href="tel:+919631940702" class="nav-cta">Call Now</a>
 </nav>
@@ -375,7 +388,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
 <section id="articles">
   <div class="section-label reveal">Knowledge &amp; Research</div>
   <h2 class="section-title reveal">Articles &amp; Research Papers</h2>
-  <p class="section-intro reveal">Legal insights, analysis, and research authored by Adv. Rajeev Kumar Dwivedi (Pappu Dubey) and the associates of the Chamber.</p>
+  <p class="section-intro reveal">Academic work authored by our interns and associates of the Chamber.</p>
 
   <div class="articles-grid" id="articlesGrid">
 
@@ -785,6 +798,18 @@ function closeArticleOnOverlay(e) {
   if (e.target === document.getElementById('articleModal')) closeArticle();
 }
 
+
+function toggleMoreMenu() {
+  var menu = document.getElementById('moreMenu');
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var btn = document.getElementById('moreBtn');
+  var menu = document.getElementById('moreMenu');
+  if (menu && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
 
 var reveals = document.querySelectorAll('.reveal');
 var observer = new IntersectionObserver(function(entries) {
