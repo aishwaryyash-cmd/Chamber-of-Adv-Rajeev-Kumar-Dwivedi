@@ -82,7 +82,36 @@ section { padding: 100px 48px; }
 .practice-list li::before { content: '\2014'; color: var(--gold); opacity: 0.5; flex-shrink: 0; }
 
 #why { background: var(--dark-2); border-top: 1px solid rgba(184,150,62,0.1); border-bottom: 1px solid rgba(184,150,62,0.1); }
-.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1100px; margin: 0 auto; }
+
+#articles { background: var(--dark-2); border-top: 1px solid rgba(184,150,62,0.1); border-bottom: 1px solid rgba(184,150,62,0.1); }
+.articles-filter { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+.filter-btn { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,232,0.5); background: transparent; border: 1px solid rgba(184,150,62,0.2); padding: 8px 16px; cursor: pointer; transition: all 0.3s; }
+.filter-btn:hover, .filter-btn.active { color: var(--dark); background: var(--gold); border-color: var(--gold); }
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.article-card { background: var(--dark-3); border: 1px solid rgba(184,150,62,0.08); padding: 36px 28px; transition: all 0.4s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.article-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.article-card:hover { border-color: rgba(184,150,62,0.2); transform: translateY(-4px); }
+.article-card:hover::after { transform: scaleX(1); }
+.article-tag { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.article-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+.article-lang { font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 0.15em; color: rgba(247,242,232,0.3); border: 1px solid rgba(184,150,62,0.2); padding: 2px 7px; margin-left: auto; }
+.article-title { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 12px; line-height: 1.5; letter-spacing: 0.03em; }
+.article-author { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--gold); margin-bottom: 14px; }
+.article-summary { font-size: 14px; line-height: 1.85; color: rgba(247,242,232,0.5); flex: 1; margin-bottom: 24px; }
+.article-read { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s; border-bottom: 1px solid rgba(184,150,62,0.3); padding-bottom: 2px; }
+.article-read:hover { gap: 14px; border-color: var(--gold); }
+.article-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
+.article-modal-overlay.open { display: flex; }
+.article-modal { background: var(--dark-2); border: 1px solid rgba(184,150,62,0.2); max-width: 720px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 48px; position: relative; }
+.article-modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: rgba(247,242,232,0.4); font-size: 20px; cursor: pointer; transition: color 0.2s; font-family: 'Cinzel', serif; }
+.article-modal-close:hover { color: var(--gold); }
+.article-modal-tag { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+.article-modal-title { font-family: 'Cinzel', serif; font-size: clamp(18px, 2.5vw, 26px); font-weight: 600; color: var(--cream); margin-bottom: 8px; line-height: 1.4; letter-spacing: 0.03em; }
+.article-modal-author { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: var(--gold); margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(184,150,62,0.15); }
+.article-modal-body { font-size: 16px; line-height: 2; color: rgba(247,242,232,0.7); }
+.article-modal-body p { margin-bottom: 18px; }
+.article-modal-body h3 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--cream); letter-spacing: 0.08em; margin: 28px 0 12px; }
+@media (max-width: 960px) { .articles-grid { grid-template-columns: 1fr; } .article-modal { padding: 32px 20px; } }.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1100px; margin: 0 auto; }
 .why-card { text-align: center; padding: 28px 16px; }
 .why-icon { width: 54px; height: 54px; border: 1px solid rgba(184,150,62,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; font-size: 20px; }
 .why-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.12em; color: var(--cream); margin-bottom: 12px; font-weight: 600; }
@@ -177,6 +206,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#articles">Articles</a></li>
     <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -338,6 +368,88 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     </div>
   </div>
 </section>
+
+  </div>
+</section>
+
+<section id="articles">
+  <div class="section-label reveal">Knowledge &amp; Research</div>
+  <h2 class="section-title reveal">Articles &amp; Research Papers</h2>
+  <p class="section-intro reveal">Legal insights, analysis, and research authored by Adv. Rajeev Kumar Dwivedi (Pappu Dubey) and the associates of the Chamber.</p>
+
+  <div class="articles-filter reveal">
+    <button class="filter-btn active" onclick="filterArticles('all', this)">All</button>
+    <button class="filter-btn" onclick="filterArticles('criminal', this)">Criminal Law</button>
+    <button class="filter-btn" onclick="filterArticles('family', this)">Family Law</button>
+    <button class="filter-btn" onclick="filterArticles('property', this)">Property &amp; Land</button>
+    <button class="filter-btn" onclick="filterArticles('consumer', this)">Consumer Rights</button>
+    <button class="filter-btn" onclick="filterArticles('constitutional', this)">Constitutional</button>
+    <button class="filter-btn" onclick="filterArticles('general', this)">General</button>
+  </div>
+
+  <div class="articles-grid" id="articlesGrid">
+
+    <div class="article-card reveal" data-category="criminal">
+      <div class="article-tag">Criminal Law <span class="article-lang">English</span></div>
+      <h3 class="article-title">Anticipatory Bail in India: Rights, Procedure and Judicial Trends</h3>
+      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+      <p class="article-summary">An in-depth analysis of Section 438 CrPC — examining the right to anticipatory bail, the discretion of courts, conditions that may be imposed, and how the Supreme Court has evolved its position over decades of jurisprudence.</p>
+      <a href="#" class="article-read" onclick="openArticle('a1'); return false;">Read Article &#8594;</a>
+    </div>
+
+    <div class="article-card reveal" data-category="family">
+      <div class="article-tag">Family Law <span class="article-lang">English</span></div>
+      <h3 class="article-title">Maintenance Rights of Women Under Hindu Marriage Act and Section 125 CrPC</h3>
+      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+      <p class="article-summary">A comparative study of maintenance remedies available to women — contrasting the provisions under the Hindu Marriage Act 1955 with Section 125 of the CrPC, with reference to landmark judgements from Indian High Courts and the Supreme Court.</p>
+      <a href="#" class="article-read" onclick="openArticle('a2'); return false;">Read Article &#8594;</a>
+    </div>
+
+    <div class="article-card reveal" data-category="property">
+      <div class="article-tag">Property &amp; Land <span class="article-lang">Hindi</span></div>
+      <h3 class="article-title">&#2349;&#2370;&#2350;&#2367; &#2357;&#2367;&#2357;&#2366;&#2342; &#2324;&#2352; &#2360;&#2350;&#2366;&#2343;&#2366;&#2344;: &#2348;&#2367;&#2361;&#2366;&#2352; &#2346;&#2381;&#2352;&#2366;&#2360;&#2306;&#2327;&#2367;&#2325; &#2325;&#2366;&#2344;&#2370;&#2344;&#2368; &#2310;&#2343;&#2366;&#2352;</h3>
+      <div class="article-author">&#2309;&#2343;&#2367;&#2357;&#2325;&#2381;&#2340;&#2366; &#2352;&#2366;&#2332;&#2368;&#2357; &#2325;&#2369;&#2350;&#2366;&#2352; &#2342;&#2381;&#2357;&#2367;&#2357;&#2375;&#2342;&#2368; (&#2346;&#2346;&#2381;&#2346;&#2370; &#2337;&#2369;&#2348;&#2375;)</div>
+      <p class="article-summary">&#2348;&#2367;&#2361;&#2366;&#2352; &#2350;&#2375;&#2306; &#2349;&#2370;&#2350;&#2367; &#2357;&#2367;&#2357;&#2366;&#2342;&#2379;&#2306; &#2325;&#2368; &#2348;&#2307;&#2397;&#2340;&#2368; &#2342;&#2352; &#2325;&#2379; &#2342;&#2375;&#2326;&#2340;&#2375; &#2361;&#2369;&#2319;, &#2351;&#2361; &#2354;&#2375;&#2326; &#2348;&#2367;&#2361;&#2366;&#2352; &#2349;&#2370;&#2350;&#2367; &#2360;&#2369;&#2343;&#2366;&#2352; &#2905;&#2343;&#2367;&#2344;&#2367;&#2351;&#2350; &#2324;&#2352; &#2352;&#2366;&#2332;&#2360;&#2381;&#2357; &#2344;&#2381;&#2351;&#2366;&#2351;&#2366;&#2354;&#2351;&#2379;&#2306; &#2325;&#2368; &#2349;&#2370;&#2350;&#2367;&#2325;&#2366; &#2325;&#2366; &#2357;&#2367;&#2358;&#2381;&#2354;&#2375;&#2359;&#2339; &#2325;&#2352;&#2340;&#2366; &#2361;&#2376;&#2404;</p>
+      <a href="#" class="article-read" onclick="openArticle('a3'); return false;">&#2354;&#2375;&#2326; &#2346;&#2307;&#2397;&#2375;&#2306; &#8594;</a>
+    </div>
+
+    <div class="article-card reveal" data-category="consumer">
+      <div class="article-tag">Consumer Rights <span class="article-lang">English</span></div>
+      <h3 class="article-title">Consumer Protection Act 2019: Key Changes and What They Mean for You</h3>
+      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+      <p class="article-summary">The Consumer Protection Act 2019 brought sweeping changes to how consumer disputes are handled in India. This article breaks down the most significant amendments — including e-commerce liability, product liability, and the new mediation framework — in plain language.</p>
+      <a href="#" class="article-read" onclick="openArticle('a4'); return false;">Read Article &#8594;</a>
+    </div>
+
+    <div class="article-card reveal" data-category="constitutional">
+      <div class="article-tag">Constitutional Law <span class="article-lang">English</span></div>
+      <h3 class="article-title">Article 21 and the Expanding Horizon of the Right to Life in India</h3>
+      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+      <p class="article-summary">Article 21 of the Indian Constitution has been interpreted by the Supreme Court to encompass far more than the right to mere existence. This research paper traces the judicial expansion of Article 21 — from Maneka Gandhi to recent judgements — and its implications for citizens.</p>
+      <a href="#" class="article-read" onclick="openArticle('a5'); return false;">Read Article &#8594;</a>
+    </div>
+
+    <div class="article-card reveal" data-category="general">
+      <div class="article-tag">General Awareness <span class="article-lang">Hindi</span></div>
+      <h3 class="article-title">&#2310;&#2346;&#2325;&#2375; &#2325;&#2366;&#2344;&#2370;&#2344;&#2368; &#2309;&#2343;&#2367;&#2325;&#2366;&#2352;: &#2361;&#2352; &#2344;&#2366;&#2327;&#2352;&#2367;&#2325; &#2325;&#2379; &#2332;&#2379; &#2346;&#2340;&#2366; &#2361;&#2379;&#2344;&#2366; &#2330;&#2366;&#2361;&#2367;&#2319;</h3>
+      <div class="article-author">&#2309;&#2343;&#2367;&#2357;&#2325;&#2381;&#2340;&#2366; &#2352;&#2366;&#2332;&#2368;&#2357; &#2325;&#2369;&#2350;&#2366;&#2352; &#2342;&#2381;&#2357;&#2367;&#2357;&#2375;&#2342;&#2368; (&#2346;&#2346;&#2381;&#2346;&#2370; &#2337;&#2369;&#2348;&#2375;)</div>
+      <p class="article-summary">&#2310;&#2350; &#2344;&#2366;&#2327;&#2352;&#2367;&#2325;&#2379;&#2306; &#2325;&#2379; &#2309;&#2325;&#2381;&#2360;&#2352; &#2309;&#2346;&#2344;&#2375; &#2360;&#2306;&#2357;&#2367;&#2343;&#2366;&#2344;&#2367;&#2325; &#2309;&#2343;&#2367;&#2325;&#2366;&#2352;&#2379;&#2306; &#2325;&#2368; &#2332;&#2366;&#2344;&#2325;&#2366;&#2352;&#2368; &#2344;&#2361;&#2368;&#2306; &#2361;&#2379;&#2340;&#2368;&#2404; &#2351;&#2361; &#2354;&#2375;&#2326; &#2360;&#2352;&#2354; &#2349;&#2366;&#2359;&#2366; &#2350;&#2375;&#2306; &#2348;&#2340;&#2366;&#2340;&#2366; &#2361;&#2376; &#2325;&#2367; &#2346;&#2369;&#2354;&#2367;&#2360; &#2327;&#2367;&#2352;&#2347;&#2381;&#2340;&#2366;&#2352; &#2325;&#2375; &#2360;&#2350;&#2351;, &#2332;&#2350;&#2366;&#2344;&#2340; &#2350;&#2366;&#2306;&#2327;&#2344;&#2375;, &#2351;&#2366; &#2325;&#2367;&#2360;&#2368; &#2328;&#2335;&#2344;&#2366; &#2325;&#2366; &#2360;&#2366;&#2350;&#2344;&#2366; &#2325;&#2352;&#2344;&#2375; &#2346;&#2352; &#2310;&#2346;&#2325;&#2375; &#2325;&#2381;&#2351;&#2366; &#2309;&#2343;&#2367;&#2325;&#2366;&#2352; &#2361;&#2376;&#2306;&#2404;</p>
+      <a href="#" class="article-read" onclick="openArticle('a6'); return false;">&#2354;&#2375;&#2326; &#2346;&#2307;&#2397;&#2375;&#2306; &#8594;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Article Modal -->
+<div class="article-modal-overlay" id="articleModal" onclick="closeArticleOnOverlay(event)">
+  <div class="article-modal">
+    <button class="article-modal-close" onclick="closeArticle()">&#10005; Close</button>
+    <div class="article-modal-tag" id="modalTag"></div>
+    <h2 class="article-modal-title" id="modalTitle"></h2>
+    <div class="article-modal-author" id="modalAuthor"></div>
+    <div class="article-modal-body" id="modalBody"></div>
+  </div>
+</div>
 
 <section id="joinus">
   <div class="section-label reveal">Careers</div>
@@ -527,6 +639,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#articles">Articles</a></li>
     <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -565,6 +678,82 @@ function handleJoinSubmit(e, successId) {
     btn.textContent = 'Apply';
     btn.style.opacity = '1';
     alert('Something went wrong. Please call us on +91 96319 40702.');
+  });
+}
+
+var articles = {
+  a1: {
+    tag: 'Criminal Law',
+    lang: 'English',
+    title: 'Anticipatory Bail in India: Rights, Procedure and Judicial Trends',
+    author: 'Adv. Rajeev Kumar Dwivedi (Pappu Dubey)',
+    body: '<p>Anticipatory bail, enshrined under Section 438 of the Code of Criminal Procedure (CrPC) 1973, is one of the most significant yet misunderstood provisions of Indian criminal law. It is a direction by a court that, in the event of arrest, a person shall be released on bail — a pre-emptive protection against loss of personal liberty.</p><h3>What is Anticipatory Bail?</h3><p>Unlike regular bail which is applied for after arrest, anticipatory bail is sought in anticipation of an arrest. It is available when a person has reason to believe that they may be arrested for a non-bailable offence. The application can be made to a Sessions Court or the High Court.</p><h3>Key Conditions Courts Consider</h3><p>Courts exercise discretion in granting anticipatory bail and consider factors such as the nature and gravity of the accusation, the antecedents of the applicant, the possibility of the applicant fleeing justice, and whether the accusation appears to be made with the intent to humiliate or injure the applicant.</p><h3>Landmark Judgements</h3><p>The Supreme Court in Gurbaksh Singh Sibbia v. State of Punjab (1980) held that the power under Section 438 must be exercised with care and circumspection. More recently, in Sushila Aggarwal v. State (2020), a constitution bench held that anticipatory bail need not be time-limited and can subsist until the end of trial.</p><h3>Conclusion</h3><p>Anticipatory bail remains a vital safeguard of personal liberty in India. Any person facing the possibility of arrest for a non-bailable offence should immediately consult an advocate to assess their eligibility and approach the appropriate court without delay.</p>'
+  },
+  a2: {
+    tag: 'Family Law',
+    lang: 'English',
+    title: 'Maintenance Rights of Women Under Hindu Marriage Act and Section 125 CrPC',
+    author: 'Adv. Rajeev Kumar Dwivedi (Pappu Dubey)',
+    body: '<p>Maintenance is a legal obligation imposed on an individual to provide financial support to their spouse, children, or parents. In India, women have multiple legal avenues to seek maintenance — each with its own scope, procedure, and advantages.</p><h3>Maintenance Under the Hindu Marriage Act 1955</h3><p>Section 24 of the Hindu Marriage Act provides for interim maintenance (pendente lite) during the pendency of matrimonial proceedings. Section 25 provides for permanent alimony and maintenance after the conclusion of proceedings. The amount is determined by the court based on the income and property of both parties.</p><h3>Maintenance Under Section 125 CrPC</h3><p>Section 125 CrPC is a secular provision applicable to all religions. It provides a speedy remedy for wives, children, and parents who are unable to maintain themselves. A wife is entitled to maintenance if her husband has sufficient means and neglects or refuses to maintain her. The provision also covers divorced wives in certain circumstances.</p><h3>Which Remedy to Choose?</h3><p>Section 125 CrPC is faster and more accessible for immediate financial relief. Proceedings under the Hindu Marriage Act are more suited to permanent settlements during divorce proceedings. In practice, women often pursue both simultaneously for maximum protection.</p><h3>Conclusion</h3><p>Women facing financial hardship due to marital breakdown should not hesitate to seek legal advice. Both remedies offer strong protections under Indian law and our Chamber has extensive experience in securing timely maintenance for our clients.</p>'
+  },
+  a3: {
+    tag: 'Property & Land',
+    lang: 'Hindi',
+    title: 'भूमि विवाद और समाधान: बिहार प्रासंगिक कानूनी आधार',
+    author: 'अधिवक्ता राजीव कुमार द्विवेदी (पप्पू दुबे)',
+    body: '<p>बिहार में भूमि विवाद एक अत्यंत सामान्य और जटिल कानूनी समस्या है। राज्य की कृषि-प्रधान अर्थव्यवस्था और पुरानी जमीन की रजिस्ट्रियों के कारण, भूमि से संबंधित मामले न्यायालयों में बड़ी संख्या में आते हैं।</p><h3>सामान्य भूमि विवाद के प्रकार</h3><p>बिहार में सबसे अधिक देखे जाने वाले भूमि विवादों में पारिवारिक बंटवारे के विवाद, जमीन की सीमा संबंधी विवाद, जाली दस्तावेजों के आधार पर बिक्री, और बेनामी संपत्ति के मामले प्रमुख हैं।</p><h3>बिहार भूमि सुधार अधिनियम</h3><p>बिहार भूमि सुधार अधिनियम के तहत राज्य सरकार ने भूमि के पुनर्वितरण और रिकॉर्ड के डिजिटलीकरण की दिशा में महत्वपूर्ण कदम उठाए हैं। भूलेख पोर्टल के माध्यम से अब नागरिक अपनी जमीन का विवरण ऑनलाइन देख सकते हैं।</p><h3>राजस्व न्यायालय की भूमिका</h3><p>बिहार में राजस्व न्यायालय भूमि विवादों के निपटारे में महत्वपूर्ण भूमिका निभाते हैं। अनुमंडल अधिकारी और जिला अधिकारी के न्यायालयों में इन मामलों की सुनवाई होती है। सिविल न्यायालय में जाने से पहले राजस्व न्यायालय में उचित उपाय अपनाना आवश्यक है।</p><h3>निष्कर्ष</h3><p>यदि आप भूमि विवाद में उलझे हैं, तो तुरंत किसी अनुभवी अधिवक्ता से परामर्श लें। हमारा चैम्बर बिहार के भूमि कानूनों में विशेषज्ञ है और आपके अधिकारों की रक्षा के लिए प्रतिबद्ध है।</p>'
+  },
+  a4: {
+    tag: 'Consumer Rights',
+    lang: 'English',
+    title: 'Consumer Protection Act 2019: Key Changes and What They Mean for You',
+    author: 'Adv. Rajeev Kumar Dwivedi (Pappu Dubey)',
+    body: '<p>The Consumer Protection Act 2019, which replaced the 1986 Act, represents a landmark shift in how India protects its consumers. With the rise of e-commerce, digital transactions, and complex supply chains, the new legislation brings significant upgrades to consumer rights.</p><h3>Key Changes in the 2019 Act</h3><p>The most significant changes include the introduction of product liability provisions, e-commerce regulation, a new definition of "consumer" that covers online buyers, and the creation of the Central Consumer Protection Authority (CCPA) as a regulatory body with wide powers.</p><h3>E-Commerce Liability</h3><p>For the first time, e-commerce platforms are expressly covered under consumer protection law. Online retailers are now required to display all mandatory information about goods and services, and platforms can be held liable for misleading advertisements and defective products.</p><h3>Product Liability</h3><p>The 2019 Act introduces strict product liability, meaning a manufacturer, seller, or service provider can be held liable for harm caused by a defective product or deficient service — even without proof of negligence in certain cases.</p><h3>How to File a Complaint</h3><p>Complaints can now be filed online through the e-Daakhil portal. The pecuniary jurisdiction has been enhanced: District Commissions hear cases up to ₹1 crore, State Commissions up to ₹10 crore, and the National Commission handles cases above ₹10 crore.</p><h3>Conclusion</h3><p>The 2019 Act significantly strengthens the hands of Indian consumers. If you have faced fraud, defective goods, or poor service, do not hesitate — the law is firmly on your side.</p>'
+  },
+  a5: {
+    tag: 'Constitutional Law',
+    lang: 'English',
+    title: 'Article 21 and the Expanding Horizon of the Right to Life in India',
+    author: 'Adv. Rajeev Kumar Dwivedi (Pappu Dubey)',
+    body: '<p>Article 21 of the Constitution of India declares: "No person shall be deprived of his life or personal liberty except according to procedure established by law." In its bare text, it appears limited. But through decades of judicial interpretation, it has become the most expansive and powerful fundamental right in the Indian Constitution.</p><h3>From AK Gopalan to Maneka Gandhi</h3><p>In the early years, the Supreme Court interpreted Article 21 narrowly in AK Gopalan v. State of Madras (1950). The watershed moment came in Maneka Gandhi v. Union of India (1978), where the Court held that the procedure must be fair, just, and reasonable — not merely any procedure prescribed by law.</p><h3>The Expanding Scope</h3><p>Following Maneka Gandhi, courts have read into Article 21 an extraordinary range of rights — the right to livelihood, the right to health, the right to education, the right to a clean environment, the right to privacy, the right to live with dignity, and even the right to a speedy trial.</p><h3>Right to Privacy — A Landmark Moment</h3><p>In Justice K.S. Puttaswamy v. Union of India (2017), a nine-judge bench unanimously held that privacy is a fundamental right under Article 21. This judgement has far-reaching implications for data protection, surveillance, and individual freedoms in the digital age.</p><h3>Conclusion</h3><p>Article 21 stands as a testament to the living nature of the Indian Constitution. Its continuous evolution by the judiciary ensures that the right to life keeps pace with the changing needs and challenges of Indian society.</p>'
+  },
+  a6: {
+    tag: 'General Awareness',
+    lang: 'Hindi',
+    title: 'आपके कानूनी अधिकार: हर नागरिक को जो पता होना चाहिए',
+    author: 'अधिवक्ता राजीव कुमार द्विवेदी (पप्पू दुबे)',
+    body: '<p>भारतीय संविधान और कानून ने प्रत्येक नागरिक को कई महत्वपूर्ण अधिकार दिए हैं। दुर्भाग्यवश, अधिकांश नागरिक इन अधिकारों से अनजान रहते हैं और अपने साथ हो रहे अन्याय को चुपचाप सह लेते हैं।</p><h3>गिरफ्तारी के समय आपके अधिकार</h3><p>यदि पुलिस आपको गिरफ्तार करती है, तो आपको यह जानने का अधिकार है कि आपको किस अपराध के लिए गिरफ्तार किया जा रहा है। आपको 24 घंटे के अंदर मजिस्ट्रेट के सामने पेश किया जाना अनिवार्य है। आपको अपने अधिवक्ता से मिलने का अधिकार है। महिला आरोपियों की तलाशी केवल महिला पुलिस अधिकारी ही ले सकती है।</p><h3>जमानत का अधिकार</h3><p>जमानती अपराधों में आपको जमानत मिलने का कानूनी अधिकार है। गैर-जमानती अपराधों में भी न्यायालय परिस्थितियों के अनुसार जमानत दे सकता है। अग्रिम जमानत (Anticipatory Bail) के लिए आप गिरफ्तारी से पहले ही न्यायालय में आवेदन कर सकते हैं।</p><h3>निःशुल्क कानूनी सहायता</h3><p>यदि आप आर्थिक रूप से कमजोर हैं तो आपको निःशुल्क कानूनी सहायता पाने का संवैधानिक अधिकार है। जिला विधिक सेवा प्राधिकरण (DLSA) इस सेवा को प्रदान करता है।</p><h3>उपभोक्ता के रूप में आपके अधिकार</h3><p>यदि आपको कोई दोषपूर्ण वस्तु बेची गई है या सेवा में कमी रही है, तो आप उपभोक्ता फोरम में शिकायत दर्ज करा सकते हैं। यह प्रक्रिया सरल और त्वरित है।</p><h3>निष्कर्ष</h3><p>कानून की जानकारी ही आपकी सबसे बड़ी सुरक्षा है। किसी भी कानूनी समस्या में देर न करें — तुरंत किसी अनुभवी अधिवक्ता से संपर्क करें।</p>'
+  }
+};
+
+function openArticle(id) {
+  var a = articles[id];
+  document.getElementById('modalTag').textContent = a.tag + ' · ' + a.lang;
+  document.getElementById('modalTitle').textContent = a.title;
+  document.getElementById('modalAuthor').textContent = a.author;
+  document.getElementById('modalBody').innerHTML = a.body;
+  document.getElementById('articleModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('articleModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeArticleOnOverlay(e) {
+  if (e.target === document.getElementById('articleModal')) closeArticle();
+}
+
+function filterArticles(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(function(card) {
+    if (cat === 'all' || card.getAttribute('data-category') === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
   });
 }
 
