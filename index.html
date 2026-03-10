@@ -39,6 +39,17 @@ nav {
 .more-menu a { display: block; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,232,0.6); text-decoration: none; padding: 14px 20px; border-bottom: 1px solid rgba(184,150,62,0.08); transition: all 0.2s; }
 .more-menu a:last-child { border-bottom: none; }
 .more-menu a:hover { color: var(--gold); background: rgba(184,150,62,0.05); padding-left: 26px; }
+.academic-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 400; align-items: flex-start; justify-content: center; padding: 60px 20px 20px; overflow-y: auto; }
+.academic-overlay.open { display: flex; }
+.academic-popup { background: var(--dark-2); border: 1px solid rgba(184,150,62,0.2); width: 100%; max-width: 1100px; padding: 48px; position: relative; }
+.academic-popup-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; border-bottom: 1px solid rgba(184,150,62,0.1); padding-bottom: 32px; }
+.academic-popup-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+.academic-popup-title { font-family: 'Cinzel', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 600; color: var(--cream); letter-spacing: 0.05em; margin-bottom: 10px; }
+.academic-popup-sub { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: rgba(247,242,232,0.45); }
+.academic-popup-close { background: none; border: 1px solid rgba(184,150,62,0.25); color: rgba(247,242,232,0.5); font-size: 16px; cursor: pointer; transition: all 0.2s; padding: 10px 16px; font-family: 'Cinzel', serif; flex-shrink: 0; margin-left: 24px; }
+.academic-popup-close:hover { border-color: var(--gold); color: var(--gold); }
+.academic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 960px) { .academic-grid { grid-template-columns: 1fr; } .academic-popup { padding: 28px 20px; } .academic-popup-header { flex-direction: column; gap: 20px; } }
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; background: var(--dark); }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,150,62,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,150,62,0.04) 0%, transparent 60%); }
@@ -218,8 +229,7 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li style="position:relative;">
       <button class="more-btn" onclick="toggleMoreMenu()" id="moreBtn">More &#9662;</button>
       <div class="more-menu" id="moreMenu">
-        <a href="#articles" onclick="toggleMoreMenu()">&#128196; Academic Work</a>
-        <a href="#gallery" onclick="toggleMoreMenu()">&#128247; Gallery</a>
+        <a href="#" onclick="openAcademic(); toggleMoreMenu(); return false;">&#128196; Academic Work</a>
       </div>
     </li>
   </ul>
@@ -382,66 +392,71 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
   </div>
 </section>
 
+<!-- Academic Work Popup Overlay -->
+<div class="academic-overlay" id="academicOverlay" onclick="closeAcademicOnOverlay(event)">
+  <div class="academic-popup">
+    <div class="academic-popup-header">
+      <div>
+        <div class="academic-popup-label">Chamber of Adv. Rajeev Kumar Dwivedi</div>
+        <h2 class="academic-popup-title">Academic Work</h2>
+        <p class="academic-popup-sub">Research authored by our interns and associates of the Chamber.</p>
+      </div>
+      <button class="academic-popup-close" onclick="closeAcademic()">&#10005;</button>
+    </div>
+    <div class="academic-grid">
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">Burden of Proof and Anti-Rape Laws in the Indian Judicial System</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">An examination of how burden of proof operates in rape cases under the Indian Evidence Act 1872 — analysing Section 114-A, the concept of consent, landmark judgements from Tuka Ram to Mahmood Farooqui, and a comparative view of rape laws across India, the UK, Canada and Australia.</p>
+        <a href="#" class="article-read" onclick="openArticle('a1'); return false;">Read Paper &#8594;</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">Examining the Legal Services Authorities in India with an Emphasis on DLSA</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">A detailed study of the Legal Services Authorities Act 1987, the role of District Legal Services Authorities, Lok Adalats, and mediation — examining how free legal aid reaches India's underprivileged and what reforms are needed to bridge the access-to-justice gap.</p>
+        <a href="#" class="article-read" onclick="openArticle('a2'); return false;">Read Paper &#8594;</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">Judicial Review in Administrative Law</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">An analysis of the doctrine of Ultra Vires and its role as the foundation of judicial review in India — examining substantive and procedural ultra vires, key Supreme Court judgements including A.K. Gopalan and L. Chandra Kumar, and the balance between public accountability and administrative power.</p>
+        <a href="#" class="article-read" onclick="openArticle('a3'); return false;">Read Paper &#8594;</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">Judicial System and Hierarchy of Judiciary in India</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">A structured overview of India's integrated judicial system — tracing the hierarchy from the Supreme Court through High Courts to District and Sessions Courts, examining the functions of each tier, and exploring the consequences of an absence of a proper judicial framework.</p>
+        <a href="#" class="article-read" onclick="openArticle('a4'); return false;">Read Paper &#8594;</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">The Evolution of Indian Democracy Through the Government of India Act 1919</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">An examination of how the Government of India Act 1919 — born out of the Montagu-Chelmsford reforms — laid the foundations of parliamentary democracy in India, introduced direct elections and bicameralism for the first time, and set in motion the eventual path to independence.</p>
+        <a href="#" class="article-read" onclick="openArticle('a5'); return false;">Read Paper &#8594;</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
+        <h3 class="article-title">Know Your Legal Rights: What Every Indian Citizen Should Be Aware Of</h3>
+        <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
+        <p class="article-summary">A plain-language guide to the fundamental legal rights every Indian citizen holds — covering rights upon arrest, the right to bail, free legal aid, and consumer protections. Written to empower ordinary citizens to understand and assert their rights.</p>
+        <a href="#" class="article-read" onclick="openArticle('a6'); return false;">Read Paper &#8594;</a>
+      </div>
+
+    </div>
   </div>
-</section>
+</div>
 
-<section id="articles">
-  <div class="section-label reveal">Knowledge &amp; Research</div>
-  <h2 class="section-title reveal">Articles &amp; Research Papers</h2>
-  <p class="section-intro reveal">Academic work authored by our interns and associates of the Chamber.</p>
-
-  <div class="articles-grid" id="articlesGrid">
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">Burden of Proof and Anti-Rape Laws in the Indian Judicial System</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">An examination of how burden of proof operates in rape cases under the Indian Evidence Act 1872 — analysing Section 114-A, the concept of consent, landmark judgements from Tuka Ram to Mahmood Farooqui, and a comparative view of rape laws across India, the UK, Canada and Australia.</p>
-      <a href="#" class="article-read" onclick="openArticle('a1'); return false;">Read Article &#8594;</a>
-    </div>
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">Examining the Legal Services Authorities in India with an Emphasis on DLSA</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">A detailed study of the Legal Services Authorities Act 1987, the role of District Legal Services Authorities, Lok Adalats, and mediation — examining how free legal aid reaches India's underprivileged and what reforms are needed to bridge the access-to-justice gap.</p>
-      <a href="#" class="article-read" onclick="openArticle('a2'); return false;">Read Article &#8594;</a>
-    </div>
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">Judicial Review in Administrative Law</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">An analysis of the doctrine of Ultra Vires and its role as the foundation of judicial review in India — examining substantive and procedural ultra vires, key Supreme Court judgements including A.K. Gopalan and L. Chandra Kumar, and the balance between public accountability and administrative power.</p>
-      <a href="#" class="article-read" onclick="openArticle('a3'); return false;">Read Article &#8594;</a>
-    </div>
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">Judicial System and Hierarchy of Judiciary in India</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">A structured overview of India's integrated judicial system — tracing the hierarchy from the Supreme Court through High Courts to District and Sessions Courts, examining the functions of each tier, and exploring the consequences of an absence of a proper judicial framework.</p>
-      <a href="#" class="article-read" onclick="openArticle('a4'); return false;">Read Article &#8594;</a>
-    </div>
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">The Evolution of Indian Democracy Through the Government of India Act 1919</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">An examination of how the Government of India Act 1919 — born out of the Montagu-Chelmsford reforms — laid the foundations of parliamentary democracy in India, introduced direct elections and bicameralism for the first time, and set in motion the eventual path to independence.</p>
-      <a href="#" class="article-read" onclick="openArticle('a5'); return false;">Read Article &#8594;</a>
-    </div>
-
-    <div class="article-card reveal">
-      <div class="article-tag">Research Paper <span class="article-lang">English</span></div>
-      <h3 class="article-title">Know Your Legal Rights: What Every Indian Citizen Should Be Aware Of</h3>
-      <div class="article-author">Adv. Rajeev Kumar Dwivedi (Pappu Dubey)</div>
-      <p class="article-summary">A plain-language guide to the fundamental legal rights every Indian citizen holds — covering rights upon arrest, the right to bail, free legal aid, and consumer protections. Written to empower ordinary citizens to understand and assert their rights.</p>
-      <a href="#" class="article-read" onclick="openArticle('a6'); return false;">Read Article &#8594;</a>
-    </div>
-
-  </div>
-</section>
 <div class="article-modal-overlay" id="articleModal" onclick="closeArticleOnOverlay(event)">
   <div class="article-modal">
     <button class="article-modal-close" onclick="closeArticle()">&#10005; Close</button>
@@ -640,7 +655,6 @@ footer { background: var(--dark); border-top: 1px solid rgba(184,150,62,0.12); p
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#articles">Articles</a></li>
     <li><a href="#joinus">Join Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -810,6 +824,18 @@ document.addEventListener('click', function(e) {
     menu.classList.remove('open');
   }
 });
+
+function openAcademic() {
+  document.getElementById('academicOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAcademic() {
+  document.getElementById('academicOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAcademicOnOverlay(e) {
+  if (e.target === document.getElementById('academicOverlay')) closeAcademic();
+}
 
 var reveals = document.querySelectorAll('.reveal');
 var observer = new IntersectionObserver(function(entries) {
